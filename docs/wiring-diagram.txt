@@ -1,0 +1,9 @@
+Generic wiring description:
+
+[Bench PSU] +12V  ----> [ECU +12V]
+[Bench PSU] GND   ----> [ECU GND] ----> [CAN interface GND]
+
+[CAN_H] <--------> [ECU CAN_H]
+[CAN_L] <--------> [ECU CAN_L]
+
+You can turn this into a nice diagram later using draw.io or a similar tool.

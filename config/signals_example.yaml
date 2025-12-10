@@ -1,0 +1,17 @@
+# Generic CAN signals and DTC-like mapping (fictional)
+
+can_bus:
+  channel: "vcan0"
+  bitrate: 500000
+
+dtc_signals:
+  - id: 0x700
+    name: "DTC_STATUS"
+    description: "Example DTC status frame"
+    dtcs:
+      - code: "P1000"
+        bit: 0
+        description: "Example DTC 1"
+      - code: "P2000"
+        bit: 1
+        description: "Example DTC 2"
