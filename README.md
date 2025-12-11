@@ -14,6 +14,12 @@ Focus areas:
 ## 🚀 Quickstart
 
 ```bash
+> Ensure you have a `requirements.txt` file in the project root directory.  
+> Example contents:
+> ```
+> python-can
+> pandas
+> ```
 pip install -r requirements.txt
 python scripts/log_can.py --channel vcan0 --outfile logs/session_01.log
 python scripts/parse_dtc.py --infile logs/session_01.log

@@ -10,9 +10,11 @@ def main():
     parser.add_argument("--outfile", required=True, help="Output log file path")
     args = parser.parse_args()
 
-    os.makedirs(os.path.dirname(args.outfile), exist_ok=True)
+    outdir = os.path.dirname(args.outfile)
+    if outdir:
+        os.makedirs(outdir, exist_ok=True)
 
-    bus = can.interface.Bus(channel=args.channel, bustype="socketcan", bitrate=args.bitrate)
+    bus = can.interface.Bus(channel=args.channel, interface="socketcan", bitrate=args.bitrate)
 
     print(f"Logging CAN traffic on {args.channel} to {args.outfile} (Ctrl+C to stop)...")
     with open(args.outfile, "w", encoding="utf-8") as f:
@@ -23,6 +25,12 @@ def main():
                 f.flush()
         except KeyboardInterrupt:
             print("Stopping logging.")
+        finally:
+            try:
+                bus.shutdown()
+            except Exception:
+                # best-effort shutdown; don't raise on exit
+                pass
 
 
 if __name__ == "__main__":
